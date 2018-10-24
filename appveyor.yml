@@ -5,24 +5,24 @@ environment:
     RUST_VERSION: stable
 
     # TODO Update this to match the name of your project.
-    CRATE_NAME: trust
+    CRATE_NAME: exonum-java-binding
 
   # TODO These are all the build jobs. Adjust as necessary. Comment out what you
   # don't need
   matrix:
     # MinGW
-    - TARGET: i686-pc-windows-gnu
-    - TARGET: x86_64-pc-windows-gnu
+#    - TARGET: i686-pc-windows-gnu
+#    - TARGET: x86_64-pc-windows-gnu
 
     # MSVC
     - TARGET: i686-pc-windows-msvc
     - TARGET: x86_64-pc-windows-msvc
 
     # Testing other channels
-    - TARGET: x86_64-pc-windows-gnu
-      RUST_VERSION: nightly
-    - TARGET: x86_64-pc-windows-msvc
-      RUST_VERSION: nightly
+#    - TARGET: x86_64-pc-windows-gnu
+#      RUST_VERSION: nightly
+#    - TARGET: x86_64-pc-windows-msvc
+#      RUST_VERSION: nightly
 
 install:
   - ps: >-
