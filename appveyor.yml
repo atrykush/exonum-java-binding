@@ -9,7 +9,8 @@ environment:
     JAVA_LIB_DIR: C:\Program Files\Java\jdk1.8.0\lib
     # TODO Update this to match the name of your project.
     CRATE_NAME: exonum-java-binding
-
+  matrix:
+    - TARGET: x86_64-pc-windows-msvc
 install:
   - ps: >-
       If ($Env:TARGET -eq 'x86_64-pc-windows-gnu') {
@@ -17,9 +18,7 @@ install:
       } ElseIf ($Env:TARGET -eq 'i686-pc-windows-gnu') {
         $Env:PATH += ';C:\msys64\mingw32\bin'
       }
-  - echo %JAVA_HOME%
-  - echo %JAVA_LIB_DIR%
-  - dir "C:\Program Files\Java"
+  - dir "C:\Program Files\Java\jdk1.8.0\lib"
   - curl -sSf -o rustup-init.exe https://win.rustup.rs/
   - rustup-init.exe -y --default-host %TARGET% --default-toolchain %RUST_VERSION%
   - set PATH=%PATH%;C:\Users\appveyor\.cargo\bin
@@ -31,7 +30,8 @@ test_script:
   # we don't run the "test phase" when doing deploys
   - if [%APPVEYOR_REPO_TAG%]==[false] (
       cd exonum-java-binding-core/rust &&
-      cargo build --release
+      cargo build --target %TARGET% &&
+      cargo build --target %TARGET% --release
     )
 
 cache:
