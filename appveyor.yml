@@ -18,7 +18,10 @@ install:
       } ElseIf ($Env:TARGET -eq 'i686-pc-windows-gnu') {
         $Env:PATH += ';C:\msys64\mingw32\bin'
       }
-  - dir "C:\Program Files\Java\jdk1.8.0\lib"
+  - set LIBPATH=%LIBPATH%;%JAVA_LIB_DIR%
+  - set LIB=%LIB%;%JAVA_LIB_DIR%
+  - echo %LIBPATH%
+  - echo %LIB%
   - curl -sSf -o rustup-init.exe https://win.rustup.rs/
   - rustup-init.exe -y --default-host %TARGET% --default-toolchain %RUST_VERSION%
   - set PATH=%PATH%;C:\Users\appveyor\.cargo\bin
