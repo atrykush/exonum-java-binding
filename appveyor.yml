@@ -3,6 +3,7 @@ environment:
   # TODO This is the Rust channel that build jobs will use by default but can be
   # overridden on a case by case basis down below
     RUST_VERSION: stable
+    JAVA_HOME: C:\Program Files\Java\jdk1.8.0
 
     # TODO Update this to match the name of your project.
     CRATE_NAME: exonum-java-binding
@@ -16,7 +17,7 @@ environment:
 
     # MSVC
     - TARGET: i686-pc-windows-msvc
-    - TARGET: x86_64-pc-windows-msvc
+#    - TARGET: x86_64-pc-windows-msvc
 
     # Testing other channels
 #    - TARGET: x86_64-pc-windows-gnu
