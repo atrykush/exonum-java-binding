@@ -1,3 +1,5 @@
+image:
+  - Visual Studio 2017
 environment:
   global:
   # TODO This is the Rust channel that build jobs will use by default but can be
@@ -10,13 +12,13 @@ environment:
 
   # TODO These are all the build jobs. Adjust as necessary. Comment out what you
   # don't need
-  matrix:
+#  matrix:
     # MinGW
 #    - TARGET: i686-pc-windows-gnu
 #    - TARGET: x86_64-pc-windows-gnu
 
     # MSVC
-    - TARGET: i686-pc-windows-msvc
+#    - TARGET: i686-pc-windows-msvc
 #    - TARGET: x86_64-pc-windows-msvc
 
     # Testing other channels
@@ -33,6 +35,8 @@ install:
         $Env:PATH += ';C:\msys64\mingw32\bin'
       }
   - dir C:\Program Files\Java\jdk1.8.0\lib
+  - echo %JAVA_HOME%
+  - echo %JAVA_LIB_DIR%
   - curl -sSf -o rustup-init.exe https://win.rustup.rs/
   - rustup-init.exe -y --default-host %TARGET% --default-toolchain %RUST_VERSION%
   - set PATH=%PATH%;C:\Users\appveyor\.cargo\bin
@@ -44,12 +48,13 @@ test_script:
   # we don't run the "test phase" when doing deploys
   - if [%APPVEYOR_REPO_TAG%]==[false] (
       cd exonum-java-binding-core/rust &&
-      cargo build --target %TARGET% &&
-      cargo build --target %TARGET% --release &&
-      cargo test --target %TARGET% &&
-      cargo test --target %TARGET% --release &&
-      cargo run --target %TARGET% &&
-      cargo run --target %TARGET% --release
+      cargo build
+#      cargo build --target %TARGET% &&
+#      cargo build --target %TARGET% --release &&
+#      cargo test --target %TARGET% &&
+#      cargo test --target %TARGET% --release &&
+#      cargo run --target %TARGET% &&
+#      cargo run --target %TARGET% --release
     )
 
 #before_deploy:
