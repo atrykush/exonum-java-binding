@@ -4,7 +4,8 @@ environment:
   # overridden on a case by case basis down below
     RUST_VERSION: stable
     JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-
+    JAVA_LIB_DIR: C:\Program Files\Java\jdk1.8.0\lib
+    
     # TODO Update this to match the name of your project.
     CRATE_NAME: exonum-java-binding
 
